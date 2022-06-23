@@ -1,0 +1,15 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "xeozone",
+    "database": "typeorm",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+        "src/dao/entity/**/*.ts"
+    ],
+    "migrations": [],
+    "subscribers": []
+}
