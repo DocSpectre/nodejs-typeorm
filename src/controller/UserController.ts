@@ -29,7 +29,7 @@ export class UserController {
             const result = await userService.create(body)
                 .catch(err => { return { err } });
 
-            if (result['err']) return res.status(400).send({ message: "Something went wrong" });
+            if (!result || result['err']) return res.status(400).send({ message: "Something went wrong" });
             return res.send(result);
         }
 
@@ -42,7 +42,7 @@ export class UserController {
         const result = await userService.update(id, body)
             .catch(err => { return { err } });
 
-        if (result['err']) return res.status(400).send({ message: "Something went wrong" });
+        if (!result || result['err']) return res.status(400).send({ message: "Something went wrong" });
 
         res.send(result);
     }
@@ -52,7 +52,7 @@ export class UserController {
             .catch(err => { return { err } });
 
 
-        if (result['err']) return res.status(400).send({ message: "Something went wrong" });
+        if (!result || result['err']) return res.status(400).send({ message: "Something went wrong" });
 
         res.send(result);
     }
@@ -62,7 +62,7 @@ export class UserController {
         const result = await userService.findById(id)
             .catch(err => { return { err } });
 
-        if (result['err']) return res.status(400).send({ message: "Something went wrong" });
+        if (!result || result['err']) return res.status(400).send({ message: "Something went wrong" });
 
         res.send(result);
     }
@@ -72,31 +72,9 @@ export class UserController {
         const result = await userService.delete(id)
             .catch(err => { return { err } });
 
-        if (result['err']) return res.status(400).send({ message: "Something went wrong" });
+        if (!result || result['err']) return res.status(400).send({ message: "Something went wrong" });
 
         res.send(result);
     }
 
 }
-
-
-// const saveUser = async function (auth) {
-
-//     const user = new User()
-//     user.firstName = "Timber"
-//     user.lastName = "Saw"
-//     user.age = 25
-//     user.auth = auth;
-//     await AppDataSource.manager.save(user)
-// }
-
-// const saveAuth = async function () {
-//     const auth = new Auth()
-//     auth.username = "username"
-//     auth.password = "password"
-//     await saveUser(auth);
-// }
-
-// AppDataSource.initialize().then(async () => {
-//     await saveAuth();
-// }).catch(error => console.log(error))

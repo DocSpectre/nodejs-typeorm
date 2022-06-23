@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 
-app.use('/', usersRouter);
+app.use('/users', usersRouter);
 
 
 
