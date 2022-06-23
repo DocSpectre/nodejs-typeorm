@@ -5,7 +5,7 @@
     "username": "postgres",
     "password": "xeozone",
     "database": "typeorm",
-    "synchronize": false,
+    "synchronize": true,
     "logging": false,
     "entities": [
         "src/dao/entity/**/*.ts"

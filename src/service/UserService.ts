@@ -1,4 +1,5 @@
 import { User } from '../dao/entity/User';
+import { Auth } from '../dao/entity/Auth';
 import { UserDao } from '../dao/UserDao';
 
 const userDao = UserDao.createInstance();
@@ -11,7 +12,16 @@ export class UserService {
     }
 
     async create(data) {
-        return userDao.save(data);
+        const auth = new Auth();
+        auth.username = data.username;
+        auth.password = data.password;
+
+        const user = new User();
+        user.firstName = data.firstName;
+        user.lastName = data.lastName;
+        user.age = data.age;
+        user.auth = auth;
+        return userDao.save(user);
     }
 
     async find() {
@@ -19,12 +29,20 @@ export class UserService {
     }
 
     async update(id, data) {
-        const user = await userDao.findOneBy(id);
+        const user = await userDao.findOneByQuery(id);
         const input = { ...user, ...data }
-        console.log('user. ', user);
-        const result = await userDao.save(input);
 
+        const userResult = await userDao.save(input);
+        return userResult;
+    }
 
-        return result;
+    async findById(id) {
+        return await userDao.findOneByQuery(id);
+    }
+
+    async delete(id) {
+        const user = await userDao.findOneByQuery(id);
+
+        return await userDao.remove(user);
     }
 }

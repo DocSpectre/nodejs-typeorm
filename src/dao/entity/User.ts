@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, UpdateDateColumn } from "typeorm"
 import { Auth } from './Auth';
 
 @Entity()
@@ -10,7 +10,7 @@ export class User {
     @Column({ name: 'created_at', type: 'timestamptz', default: () => 'NOW()', nullable: false })
     createdAt
 
-    @Column({ name: 'modified_at', type: 'timestamptz', default: () => 'NOW()', nullable: false, onUpdate: "NOW()" })
+    @UpdateDateColumn({ name: 'modified_at', type: 'timestamptz', default: () => 'NOW()', nullable: false, onUpdate: "NOW()" })
     modifiedAt
 
     @Column({

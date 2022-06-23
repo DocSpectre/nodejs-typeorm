@@ -7,11 +7,9 @@ app.route('/').get(usersController.welcome);
 
 app.route('/create').post(usersController.create);
 
-
 app.route('/edit/:id').patch(usersController.update);
 
-
-app.route('/delete').delete(usersController.delete);
+app.route('/delete/:id').delete(usersController.delete);
 
 app.route('/list').get(usersController.getList);
 
