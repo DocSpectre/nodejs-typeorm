@@ -51,6 +51,7 @@ export class UserController {
         const result = await userService.find()
             .catch(err => { return { err } });
 
+        if (Array.isArray(result) && result.length == 0) return res.send({ message: "No Result found." });
 
         if (!result || result['err']) return res.status(400).send({ message: "Something went wrong" });
 
