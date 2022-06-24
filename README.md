@@ -1,5 +1,5 @@
 # nodejs-typeorm
-NodeJS serving basic CRUD APIs using TypeORM
+Basic NodeJS User CRUD using TypeORM
 
 
 ## Requirements
